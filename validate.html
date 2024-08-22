@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f7f7f7;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+        .yes-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .no-btn {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Validate Your Selection</h2>
+        <p>Did you mean to select this option?</p>
+        <button class="yes-btn" onclick="handleValidation(true)">Yes</button>
+        <button class="no-btn" onclick="handleValidation(false)">No</button>
+    </div>
+
+    <script>
+        const customerId = '16'; // Replace with the actual customer ID
+
+        function handleValidation(isValid) {
+            const validationResult = isValid ? 'True' : 'False';
+
+            fetch('https://apim.quickwork.co/mentortrack/piramal/v1/validation-response', {
+                method: 'POST',
+                headers: {
+                    'apiKey': '2oK4Aa6g89LRzPww4p7C92xcyfbRPn4d',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 
+                    customerId: customerId, 
+                    status: validationResult 
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Validation stored:', data);
+                window.close();
+            })
+            .catch(error => {
+                console.error('Error storing validation result:', error);
+            });
+        }
+    </script>
+</body>
+</html>

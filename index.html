@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Page</title>
+    <!-- Load jQuery -->
+    <script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
+    <!-- Load SurveyJS -->
+    <script src="https://unpkg.com/survey-jquery@1.11.11/survey.jquery.min.js"></script>
+    <script src="https://unpkg.com/survey-jquery@1.11.11/themes/index.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/survey-jquery@1.11.11/defaultV2.min.css" />
+    <style>
+        #loader {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            border: 8px solid #f3f3f3; /* Light grey */
+            border-top: 8px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div id="surveyElement" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; min-height: 100%; height:100%"></div>
+    <div id="loader"></div>
+    <div id="successContainer" style="display:none; color:green; text-align: center;">Validation successful!</div>
+    <script src="./json.js"></script>
+    <script src="./index.js"></script>
+</body>
+</html>
